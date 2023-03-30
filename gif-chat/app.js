@@ -21,12 +21,7 @@ nunjucks.configure('views',{
 });
 connect();
 
-app.use(morgran('dev'));
-app.use(express.static(path.join(__dirname, 'public')));
-app.use(express.json());
-app.use(express.urlencoded({extended: false}));
-app.use(cookieParser(process.env.COOKIE_SECRET));
-app.use(session({
+const sessionMiddleware=session({
     resave: false,
     saveUninitialized: false,
     secret: process.env.COOKIE_SECRET,
@@ -34,12 +29,20 @@ app.use(session({
         httpOnly: true,
         secure: false,
     },
-}));
+});
+
+app.use(morgran('dev'));
+app.use(express.static(path.join(__dirname, 'public')));
+app.use('/gif', express.static(path.join(__dirname, 'uploads')));
+app.use(express.json());
+app.use(express.urlencoded({extended: false}));
+app.use(cookieParser(process.env.COOKIE_SECRET));
+app.use(sessionMiddleware);
 
 app.use((req, res, next)=>{
     if(!req.session.color){
         const colorHash=new ColorHash();
-        req.session.color=colorHash.hex(req.sessionID);
+        req.session.color=colorHash.hex(req.sessionID); //글자색으로 유저 구분
         console.log(req.session.color, req.sessionID);
     }
     next();
@@ -64,4 +67,4 @@ const server=app.listen(app.get('port'), ()=>{
     console.log(app.get('port'), '번 포트에서 대기 중');
 });
 
-webSocket(server, app);
+webSocket(server, app, sessionMiddleware);
