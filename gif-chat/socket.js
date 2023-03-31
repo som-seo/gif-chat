@@ -4,8 +4,8 @@ const {removeRoom}=require('./services');
 module.exports=(server, app, sessionMiddleware)=>{
     const io=SocketIO(server, {path: '/socket.io'});
     app.set('io', io);
-    const room=io.of('/room');
-    const chat=io.of('/chat');
+    const room=io.of('./schemas/room');
+    const chat=io.of('./schemas/chat');
 
     const wrap=middleware=>(socket, next)=>middleware(socket.request, {}, next);
     chat.use(wrap(sessionMiddleware));
