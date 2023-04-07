@@ -1,4 +1,4 @@
-# gif-chat <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white"><img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=MongoDB&logoColor=white"><img src="https://img.shields.io/badge/Socker.io-010101?style=for-the-badge&logo=Socker.io&logoColor=white">
+# gif-chat <img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=Node.js&logoColor=white"><img src="https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=MongoDB&logoColor=white"><img src="https://img.shields.io/badge/Socket.io-010101?style=for-the-badge&logo=Socket.io&logoColor=white">
 ## :tada: 웹 소켓을 이용한 실시간 이미지 채팅
 Node.js와 MongoDB, 웹 소켓을 이용해 실시간 채팅 사이트 만들기 <br>
 2023.03.22-2023.03.31 (1차 완성) <br>
